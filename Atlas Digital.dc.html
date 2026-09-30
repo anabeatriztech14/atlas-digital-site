@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Atlas Digital | Criação de Sites Profissionais</title>
+<meta name="description" content="A Atlas Digital cria sites profissionais, landing pages e sites institucionais personalizados para empresas e negócios.">
+<meta property="og:title" content="Atlas Digital | Criação de Sites Profissionais">
+<meta property="og:description" content="A Atlas Digital cria sites profissionais, landing pages e sites institucionais personalizados para empresas e negócios.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo/atlas-digital.png">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" type="image/png" href="assets/logo/atlas-favicon.png">
+<link rel="apple-touch-icon" href="assets/logo/atlas-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Archivo:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth;background:#07090A}
+body{margin:0;background:#07090A;color:#F2F4F3;font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+*{box-sizing:border-box}
+a{color:#F2F4F3;text-decoration:none}
+a:hover{color:#55FB02}
+:focus-visible{outline:2px solid #55FB02;outline-offset:3px;border-radius:4px}
+::selection{background:#55FB02;color:#07090A}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#07090A;position:relative;overflow:hidden">
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(7,9,10,0.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.07)">
+  <div style="max-width:1320px;margin:0 auto;padding:0 clamp(20px,4vw,48px);height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#inicio" style="display:flex;align-items:center;flex-shrink:0">
+      <img src="assets/logo/atlas-digital.png" alt="Atlas Digital" width="131" height="36" style="display:block;height:36px;width:auto">
+    </a>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Principal" style="display:flex;align-items:center;gap:32px">
+        <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+          <a href="{{ item.href }}" style="font-size:14px;font-weight:500;color:#9BA3A0;letter-spacing:0.01em;transition:color .2s" style-hover="color:#F2F4F3">{{ item.label }}</a>
+        </sc-for>
+      </nav>
+      <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 18px;border-radius:999px;background:#55FB02;color:#07090A;font-size:14px;font-weight:600;transition:transform .2s, background .2s" style-hover="background:#7DFF3D;color:#07090A;transform:translateY(-1px)">Fale conosco <span aria-hidden="true">↗</span></a>
+    </sc-if>
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button type="button" onClick="{{ toggleMenu }}" aria-expanded="{{ menuOpen }}" aria-controls="menu-mobile" aria-label="{{ menuLabel }}" style="width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,0.16);background:transparent;color:#F2F4F3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer">
+        <span style="{{ bar1 }}"></span>
+        <span style="{{ bar2 }}"></span>
+      </button>
+    </sc-if>
+  </div>
+  <sc-if value="{{ showMobileMenu }}" hint-placeholder-val="{{ false }}">
+    <nav id="menu-mobile" aria-label="Menu mobile" style="border-top:1px solid rgba(255,255,255,0.07);padding:8px clamp(20px,4vw,48px) 28px;display:flex;flex-direction:column;background:#07090A;max-height:calc(100vh - 68px);overflow-y:auto">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+        <a href="{{ item.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;min-height:60px;border-bottom:1px solid rgba(255,255,255,0.07);font-family:'Anton',sans-serif;font-size:26px;text-transform:uppercase;letter-spacing:0.01em">{{ item.label }}</a>
+      </sc-for>
+      <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" style="margin-top:24px;display:flex;align-items:center;justify-content:center;height:52px;border-radius:999px;background:#55FB02;color:#07090A;font-weight:600" style-hover="color:#07090A">Fale conosco ↗</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main>
+<section id="inicio" aria-labelledby="hero-title" style="position:relative;overflow:hidden;isolation:isolate;background:#07090A">
+  <div aria-hidden="true" ref="{{ heroBgRef }}" style="position:absolute;inset:-3%;z-index:-3;background-image:url('assets/hero/atlas-hero-bg-v2.png');background-size:cover;background-repeat:no-repeat;background-position:{{ heroBgPos }};transform:scaleX(-1);will-change:transform"></div>
+  <div aria-hidden="true" ref="{{ heroGlowRef }}" style="position:absolute;inset:0;z-index:-3;background:{{ heroGlow }};mix-blend-mode:screen;pointer-events:none;opacity:0.8"></div>
+  <div aria-hidden="true" style="position:absolute;inset:0;z-index:-2;background:{{ heroOverlay }}"></div>
+  <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:0;height:26%;z-index:-2;background:linear-gradient(rgba(7,9,10,0),#07090A)"></div>
+  <canvas aria-hidden="true" ref="{{ heroCanvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
+
+  <div style="position:relative;max-width:1320px;margin:0 auto;min-height:{{ heroMinH }};display:flex;flex-direction:column;padding:clamp(24px,3vw,32px) clamp(20px,4vw,48px) clamp(24px,3vw,36px)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#9BA3A0">
+      <span style="color:#F2F4F3;font-weight:600">Criação de sites</span>
+      <span style="display:flex;align-items:center;gap:10px"><span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:#55FB02"></span>Disponível para novos projetos</span>
+    </div>
+
+    <div style="max-width:700px;margin:auto 0;padding:clamp(40px,6vw,72px) 0 clamp(40px,6vw,72px)">
+      <div data-reveal="">
+        <p style="margin:0 0 28px;display:flex;align-items:center;gap:14px;font-size:13px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#55FB02"><span aria-hidden="true" style="width:32px;height:1px;background:#55FB02"></span>{{ company.name }}</p>
+        <h1 id="hero-title" style="margin:0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:0.98;letter-spacing:0.004em;font-size:clamp(40px,6vw,88px)">
+          <span style="display:block;color:#F2F4F3;padding-bottom:0.12em">Sua presença digital</span>
+          <span style="display:block;color:#F2F4F3;padding-bottom:0.12em">começa com um site</span>
+          <span style="display:block;color:#55FB02;padding-bottom:0.12em">que representa</span>
+          <span style="display:block;color:#55FB02">seu negócio.</span>
+        </h1>
+        <p style="margin:clamp(28px,3.4vw,40px) 0 0;max-width:460px;font-size:clamp(16px,1.35vw,18px);line-height:1.6;color:#B7BEBB;text-wrap:pretty">Criamos sites sob medida para empresas e profissionais, do planejamento à publicação.</p>
+        <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap">
+          <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:12px;height:54px;padding:0 28px;border-radius:999px;background:#55FB02;color:#07090A;font-size:15px;font-weight:600;transition:transform .25s cubic-bezier(.2,.7,.2,1), background .2s" style-hover="background:#7DFF3D;color:#07090A;transform:translateY(-2px)">Solicitar orçamento <span aria-hidden="true">↗</span></a>
+          <a href="#portfolio" style="display:inline-flex;align-items:center;gap:12px;height:54px;padding:0 28px;border-radius:999px;border:1px solid rgba(255,255,255,0.22);color:#F2F4F3;font-size:15px;font-weight:500;transition:border-color .2s, background .2s, transform .25s cubic-bezier(.2,.7,.2,1)" style-hover="border-color:#55FB02;background:rgba(85,251,2,0.06);color:#F2F4F3;transform:translateY(-2px)">Ver projetos <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:20px">
+      <a href="#servicos" style="display:inline-flex;align-items:center;gap:14px;font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:#9BA3A0;transition:color .2s" style-hover="color:#F2F4F3">
+        <span aria-hidden="true" style="position:relative;display:block;width:1px;height:44px;background:rgba(255,255,255,0.16);overflow:hidden"><span ref="{{ scrollDotRef }}" style="position:absolute;left:0;top:0;width:1px;height:14px;background:#55FB02"></span></span>
+        Scroll ↓
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="servicos" aria-labelledby="servicos-title" style="border-top:1px solid rgba(255,255,255,0.07);background:#07090A">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,4vw,48px)">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:clamp(40px,5vw,64px)">
+      <div data-reveal="">
+        <p style="margin:0 0 18px;font-size:13px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#55FB02">Serviços</p>
+        <h2 id="servicos-title" style="margin:0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:1;font-size:clamp(36px,4.8vw,68px);color:#F2F4F3">O que a Atlas faz</h2>
+      </div>
+      <p data-reveal="" style="margin:0;max-width:380px;font-size:16px;line-height:1.6;color:#9BA3A0;text-wrap:pretty">Do primeiro site ao suporte depois que ele vai ao ar.</p>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;border-bottom:1px solid rgba(255,255,255,0.1)">
+      <sc-for list="{{ services }}" as="s" hint-placeholder-count="4">
+        <li data-reveal="" data-delay="{{ s.delay }}" onMouseEnter="{{ s.enter }}" onMouseLeave="{{ s.leave }}" style="position:relative">
+          <span aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,0.1)"></span>
+          <span aria-hidden="true" style="{{ s.lineStyle }}"></span>
+          <a href="{{ s.href }}" target="_blank" rel="noopener" aria-label="{{ s.aria }}" style="{{ s.rowStyle }}" style-hover="color:#F2F4F3">
+            <span style="{{ s.numStyle }}">{{ s.num }}</span>
+            <h3 style="{{ s.titleStyle }}">{{ s.title }}</h3>
+            <p style="grid-area:desc;margin:0;max-width:440px;font-size:15px;line-height:1.6;color:#9BA3A0;text-wrap:pretty">{{ s.desc }}</p>
+            <span aria-hidden="true" style="grid-area:icon;justify-self:end;position:relative;display:block;width:48px;height:40px">
+              <sc-for list="{{ s.parts }}" as="pt" hint-placeholder-count="3">
+                <span style="{{ pt }}"></span>
+              </sc-for>
+            </span>
+          </a>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+
+<section id="portfolio" aria-labelledby="portfolio-title" style="border-top:1px solid rgba(255,255,255,0.07);background:#0A0D0C">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,4vw,48px)">
+    <div data-reveal="" style="margin-bottom:clamp(40px,5vw,72px)">
+      <p style="margin:0 0 18px;font-size:13px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#55FB02">Portfólio</p>
+      <h2 id="portfolio-title" style="margin:0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:1;font-size:clamp(36px,4.8vw,68px);color:#F2F4F3">Projetos em destaque</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:clamp(80px,10vw,140px)">
+      <sc-for list="{{ projects }}" as="p" hint-placeholder-count="1">
+        <article style="display:flex;flex-direction:column;gap:clamp(28px,3.6vw,48px)">
+          <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:clamp(24px,4vw,72px);align-items:end">
+            <div>
+              <span style="display:block;font-family:'Anton',sans-serif;font-size:22px;line-height:1;color:#55FB02">{{ p.num }}</span>
+              <h3 style="margin:16px 0 0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:0.94;font-size:clamp(36px,7vw,112px);color:#F2F4F3">{{ p.title }}</h3>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:24px;max-width:500px">
+              <p style="margin:0;font-size:17px;line-height:1.6;color:#C9CECC;text-wrap:pretty">{{ p.description }}</p>
+              <ul aria-label="Escopo do projeto" style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ p.tags }}" as="t" hint-placeholder-count="3">
+                  <li style="display:inline-flex;align-items:center;height:32px;padding:0 14px;border:1px solid rgba(255,255,255,0.14);border-radius:999px;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#C9CECC">{{ t }}</li>
+                </sc-for>
+              </ul>
+            </div>
+          </div>
+
+          <a href="{{ p.href }}" target="_blank" rel="noopener noreferrer" aria-label="{{ p.aria }}" data-reveal="clip" onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position:relative;display:block;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);background:#0E1211;color:#F2F4F3;cursor:pointer;transition:border-color .35s" style-hover="color:#F2F4F3;border-color:rgba(85,251,2,0.45)">
+            <span style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;height:40px;padding:0 16px;border-bottom:1px solid rgba(255,255,255,0.08)">
+              <span aria-hidden="true" style="display:flex;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.16)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.16)"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.16)"></span></span>
+              <span style="font-size:12px;letter-spacing:0.02em;color:#9BA3A0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ p.domain }}</span>
+              <span style="{{ p.openStyle }}">Abrir projeto ↗</span>
+            </span>
+            <span style="{{ p.frameStyle }}">
+              <sc-if value="{{ p.hasImage }}" hint-placeholder-val="{{ true }}">
+                <img src="{{ p.image }}" alt="{{ p.alt }}" loading="lazy" style="{{ p.imgStyle }}">
+              </sc-if>
+              <sc-if value="{{ p.noImage }}" hint-placeholder-val="{{ false }}">
+                <image-slot id="{{ p.imageSlot }}" shape="rect" placeholder="{{ p.placeholder }}" style="position:absolute;inset:0;width:100%;height:100%"></image-slot>
+              </sc-if>
+              <span aria-hidden="true" style="{{ p.veilStyle }}"></span>
+              <span aria-hidden="true" style="{{ p.ctaStyle }}">Ver projeto ↗</span>
+            </span>
+          </a>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+            <sc-if value="{{ p.hasLink }}" hint-placeholder-val="{{ true }}">
+              <a href="{{ p.link }}" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:12px;height:48px;padding:0 22px;border-radius:999px;border:1px solid rgba(255,255,255,0.22);font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;transition:border-color .2s, background .2s, color .2s" style-hover="border-color:#55FB02;background:#55FB02;color:#07090A">Ver projeto <span aria-hidden="true">↗</span></a>
+            </sc-if>
+            <sc-if value="{{ p.noLink }}" hint-placeholder-val="{{ false }}">
+              <span style="display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:999px;border:1px dashed rgba(255,255,255,0.18);font-size:13px;color:#9BA3A0">Link em breve</span>
+            </sc-if>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="processo" aria-labelledby="processo-title" style="border-top:1px solid rgba(255,255,255,0.07);background:#07090A">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,4vw,48px)">
+    <div data-reveal="" style="margin-bottom:clamp(48px,6vw,88px)">
+      <p style="margin:0 0 18px;font-size:13px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#55FB02">Processo</p>
+      <h2 id="processo-title" style="margin:0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;font-size:clamp(36px,4.8vw,68px);color:#F2F4F3"><span style="display:block">Como a Atlas transforma</span><span style="display:block;color:#55FB02">uma ideia em site</span></h2>
+    </div>
+    <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:{{ procCols }};gap:{{ procGap }}">
+      <sc-for list="{{ process }}" as="step" hint-placeholder-count="4">
+        <li data-reveal="" data-delay="{{ step.delay }}" onMouseEnter="{{ step.enter }}" onClick="{{ step.enter }}" style="{{ step.liStyle }}">
+          <div aria-hidden="true" style="{{ step.railStyle }}">
+            <span style="{{ step.lineStyle }}"><span style="{{ step.fillStyle }}"></span></span>
+            <span style="{{ step.nodeStyle }}"></span>
+          </div>
+          <div style="{{ step.bodyStyle }}">
+            <span style="{{ step.numStyle }}">{{ step.num }}</span>
+            <h3 style="margin:0;font-size:17px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;line-height:1.2;color:#F2F4F3">{{ step.title }}</h3>
+            <p style="margin:12px 0 0;max-width:290px;font-size:15px;line-height:1.55;color:#9BA3A0;text-wrap:pretty">{{ step.desc }}</p>
+          </div>
+        </li>
+      </sc-for>
+    </ol>
+  </div>
+</section>
+
+<section id="beneficios" aria-labelledby="beneficios-title" style="border-top:1px solid rgba(255,255,255,0.07);background:#0A0D0C">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,4vw,48px)">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(28px,5vw,80px);align-items:end;margin-bottom:clamp(48px,6vw,88px)">
+      <h2 id="beneficios-title" data-reveal="" style="margin:0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:0.98;font-size:clamp(40px,5.8vw,88px)"><span style="display:block;color:#F2F4F3">Seu Instagram mostra.</span><span style="display:block;color:#55FB02">Seu site apresenta.</span></h2>
+      <p data-reveal="" style="margin:0;max-width:440px;font-size:17px;line-height:1.65;color:#B7BEBB;text-wrap:pretty">Uma presença digital profissional ajuda seu negócio a transmitir confiança, apresentar seus serviços e facilitar o contato com novos clientes.</p>
+    </div>
+    <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:{{ benefitCols }};border-top:1px solid rgba(255,255,255,0.12)">
+      <sc-for list="{{ benefits }}" as="b" hint-placeholder-count="3">
+        <li data-reveal="" data-delay="{{ b.delay }}" style="{{ b.style }}">
+          <span style="display:block;font-size:13px;font-weight:600;letter-spacing:0.2em;color:#55FB02">{{ b.num }}</span>
+          <h3 style="margin:28px 0 0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:1;font-size:clamp(26px,2.4vw,34px);color:#F2F4F3">{{ b.title }}</h3>
+          <p style="margin:14px 0 0;max-width:320px;font-size:15px;line-height:1.6;color:#9BA3A0;text-wrap:pretty">{{ b.desc }}</p>
+        </li>
+      </sc-for>
+    </ul>
+  </div>
+</section>
+
+<section id="sobre" aria-labelledby="sobre-title" style="border-top:1px solid rgba(255,255,255,0.07);background:#07090A">
+  <div style="max-width:1320px;margin:0 auto;padding:clamp(72px,9vw,128px) clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:clamp(40px,6vw,96px)">
+    <div data-reveal="">
+      <p style="margin:0 0 18px;font-size:13px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:#55FB02">Sobre a Atlas</p>
+      <h2 id="sobre-title" style="margin:0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:0.98;font-size:clamp(40px,5.8vw,88px);color:#F2F4F3"><span style="display:block">Sites feitos</span><span style="display:block;color:#55FB02">para o seu negócio</span></h2>
+    </div>
+    <div data-reveal="" style="display:flex;flex-direction:column;gap:clamp(36px,4vw,56px);padding-top:clamp(0px,3vw,40px)">
+      <div style="display:flex;flex-direction:column;gap:20px;max-width:540px">
+        <p style="margin:0;font-size:clamp(18px,1.6vw,21px);line-height:1.55;color:#F2F4F3;text-wrap:pretty">A Atlas Digital cria sites para empresas e profissionais que precisam se apresentar bem na internet.</p>
+        <p style="margin:0;font-size:16px;line-height:1.7;color:#9BA3A0;text-wrap:pretty">Cada projeto começa entendendo o negócio, seu público e seus objetivos. A partir disso, desenvolvemos uma experiência digital com identidade própria, pensada para ser clara, rápida e fácil de usar.</p>
+      </div>
+      <ul aria-label="Diferenciais" style="list-style:none;margin:0;padding:0;max-width:540px;border-bottom:1px solid rgba(255,255,255,0.1)">
+        <sc-for list="{{ values }}" as="v" hint-placeholder-count="5">
+          <li style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#F2F4F3;transition:color .25s, padding .35s cubic-bezier(.2,.7,.2,1)" style-hover="color:#55FB02;padding-left:8px">{{ v }}<span aria-hidden="true" style="width:6px;height:6px;background:#55FB02"></span></li>
+        </sc-for>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contato" aria-labelledby="cta-title" style="position:relative;overflow:hidden;background:#55FB02;color:#07090A">
+  <div style="position:relative;max-width:1320px;margin:0 auto;padding:clamp(72px,10vw,148px) clamp(20px,4vw,48px) clamp(56px,7vw,96px)">
+    <h2 id="cta-title" data-reveal="" style="margin:0;font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;line-height:0.92;letter-spacing:0.002em;font-size:clamp(40px,11.5vw,184px);color:#07090A">
+      <span style="display:block">Tem um projeto</span>
+      <span style="display:block;color:transparent;-webkit-text-stroke:clamp(1.5px,0.24vw,3px) #07090A;paint-order:stroke fill">em mente?</span>
+    </h2>
+    <div style="margin-top:clamp(40px,6vw,88px);padding-top:clamp(28px,3vw,40px);border-top:1px solid rgba(7,9,10,0.25);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(36px,5vw,80px);align-items:start">
+      <div data-reveal="">
+        <p style="margin:0;max-width:420px;font-size:clamp(18px,1.7vw,22px);line-height:1.45;color:#07090A;text-wrap:pretty">Conte o que você precisa pelo WhatsApp e montamos uma proposta.</p>
+        <a href="{{ whatsappUrl }}" target="_blank" rel="noopener" style="margin-top:28px;display:inline-flex;align-items:center;gap:14px;height:60px;padding:0 32px;border-radius:999px;background:#07090A;color:#55FB02;font-size:14px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;transition:transform .25s cubic-bezier(.2,.7,.2,1), background .2s" style-hover="background:#1A201D;color:#55FB02;transform:translateY(-2px)">Falar com a Atlas <span aria-hidden="true">↗</span></a>
+      </div>
+      <ul data-reveal="" aria-label="Contato" style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column">
+        <sc-for list="{{ contacts }}" as="c" hint-placeholder-count="2">
+          <li>
+            <a href="{{ c.href }}" target="_blank" rel="noopener" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;min-height:72px;padding:12px 0;border-bottom:1px solid rgba(7,9,10,0.25);color:#07090A;transition:padding .35s cubic-bezier(.2,.7,.2,1)" style-hover="color:#07090A;padding-left:8px">
+              <span style="display:flex;flex-direction:column;gap:4px">
+                <span style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(7,9,10,0.72)">{{ c.label }}</span>
+                <span style="font-size:18px;font-weight:600">{{ c.value }}</span>
+              </span>
+              <span aria-hidden="true" style="font-size:18px">↗</span>
+            </a>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="background:#07090A">
+  <div style="max-width:1320px;margin:0 auto;padding:28px clamp(20px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;font-size:13px;color:#9BA3A0">
+    <span>© {{ year }} {{ company.name }}. Todos os direitos reservados.</span>
+    <nav aria-label="Rodapé" style="display:flex;gap:24px;flex-wrap:wrap">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
+        <a href="{{ item.href }}" style="color:#9BA3A0" style-hover="color:#F2F4F3">{{ item.label }}</a>
+      </sc-for>
+    </nav>
+    <a href="#inicio" style="display:inline-flex;align-items:center;gap:8px;color:#F2F4F3">Voltar ao topo <span aria-hidden="true" style="color:#55FB02">↑</span></a>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+// ===== CONFIGURAÇÃO CENTRAL — altere dados da empresa aqui =====
+const COMPANY = { name: 'Atlas Digital' };
+const WHATSAPP_NUMBER = '5583986471317';          // só dígitos, com DDI + DDD
+const WHATSAPP_DISPLAY = '+55 83 98647-1317';
+const WHATSAPP_MESSAGE = 'Olá, Atlas Digital! Gostaria de solicitar um orçamento para um site.';
+const INSTAGRAM_URL = 'https://www.instagram.com/atlasdigital.jp?stkn=M29iMGxpaGw0cXd0';
+const INSTAGRAM_HANDLE = '@atlasdigital.jp';
+
+const NAV = [
+  { label: 'Início', href: '#inicio' },
+  { label: 'Serviços', href: '#servicos' },
+  { label: 'Portfólio', href: '#portfolio' },
+  { label: 'Processo', href: '#processo' },
+  { label: 'Sobre', href: '#sobre' },
+  { label: 'Contato', href: '#contato' },
+];
+
+const SERVICES = [
+  { title: 'Criação de Sites', icon: 'browser', desc: 'Desenvolvimento de sites profissionais, personalizados e alinhados à identidade de cada negócio.' },
+  { title: 'Landing Pages', icon: 'landing', desc: 'Páginas estratégicas para apresentar serviços, produtos, campanhas ou gerar contatos.' },
+  { title: 'Sites Institucionais', icon: 'stack', desc: 'Sites completos para empresas, profissionais e negócios que precisam estabelecer uma presença digital profissional.' },
+  { title: 'Manutenção de Sites', icon: 'dial', desc: 'Atualizações, ajustes, melhorias e suporte contínuo para sites já publicados.' },
+];
+
+// Portfólio — para adicionar um projeto, inclua um novo objeto aqui.
+const PROJECTS = [
+  {
+    title: 'PL Envelopamentos',
+    description: 'Site institucional desenvolvido pela Atlas Digital para apresentar os serviços da PL Envelopamentos de forma profissional e facilitar o contato com novos clientes.',
+    tags: ['Site institucional', 'Design', 'Desenvolvimento'],
+    image: 'assets/portfolio/pl-envelopamentos.png',
+    link: 'https://site-pl-envelopamentos.vercel.app/',
+  },
+];
+
+const PROCESS = [
+  { title: 'Conversa', desc: 'Entendemos seu negócio, seus objetivos e o que você precisa.' },
+  { title: 'Estratégia', desc: 'Definimos estrutura, conteúdo, identidade e experiência.' },
+  { title: 'Desenvolvimento', desc: 'Transformamos a estratégia em um site personalizado.' },
+  { title: 'Publicação', desc: 'Colocamos o projeto no ar e oferecemos suporte após a publicação.' },
+];
+
+const BENEFITS = [
+  { title: 'Credibilidade', desc: 'Uma apresentação profissional fortalece a percepção da sua marca.' },
+  { title: 'Presença digital', desc: 'Seu negócio pode ser encontrado e apresentado além das redes sociais.' },
+  { title: 'Oportunidades', desc: 'Um site bem estruturado facilita o contato e gera novas oportunidades.' },
+];
+
+const VALUES = ['Design personalizado', 'Responsivo', 'Performance', 'SEO', 'Fácil de atualizar'];
+// ===============================================================
+
+const pad = (n) => String(n).padStart(2, '0');
+const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const EASE = 'cubic-bezier(.2,.7,.2,1)';
+const wa = (msg) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+function iconParts(kind, on) {
+  const c = on ? '#55FB02' : 'rgba(242,244,243,0.5)';
+  const b = '1px solid ' + c;
+  const base = { position: 'absolute', display: 'block', transition: `all .55s ${EASE}` };
+  const P = (o) => ({ ...base, ...o });
+  if (kind === 'browser') return [
+    P({ left: 0, top: 0, width: 48, height: 40, border: b, borderRadius: 3 }),
+    P({ left: 0, top: 10, width: 48, height: 1, background: c }),
+    P({ left: 8, top: 18, width: on ? 26 : 18, height: 2, background: c }),
+    P({ left: 8, top: 25, width: on ? 14 : 24, height: 2, background: c }),
+  ];
+  if (kind === 'landing') return [
+    P({ left: 12, top: 0, width: 24, height: 40, border: b, borderRadius: 3 }),
+    P({ left: 18, top: 8, width: 12, height: 2, background: c }),
+    P({ left: 18, top: 14, width: 8, height: 2, background: c }),
+    P({ left: 18, top: on ? 24 : 28, width: 12, height: 5, background: c, borderRadius: 1 }),
+  ];
+  if (kind === 'stack') return [
+    P({ left: on ? 18 : 16, top: on ? -2 : 0, width: 30, height: 26, border: b, borderRadius: 2, background: '#07090A' }),
+    P({ left: 8, top: 7, width: 30, height: 26, border: b, borderRadius: 2, background: '#07090A' }),
+    P({ left: on ? -2 : 0, top: on ? 16 : 14, width: 30, height: 26, border: b, borderRadius: 2, background: '#07090A' }),
+  ];
+  return [
+    P({ left: 4, top: 0, width: 40, height: 40, border: b, borderRadius: '50%' }),
+    P({ left: 23.5, top: 8, width: 1, height: 12, background: c, transformOrigin: '50% 100%', transform: `rotate(${on ? 120 : 0}deg)` }),
+    P({ left: 21, top: 17, width: 6, height: 6, background: c, borderRadius: '50%' }),
+  ];
+}
+
+class Component extends DCLogic {
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1280, menuOpen: false, step: 0, svc: -1, proj: -1 };
+
+  heroBgRef = React.createRef();
+  heroGlowRef = React.createRef();
+  heroCanvasRef = React.createRef();
+  scrollDotRef = React.createRef();
+
+  stepEnter = PROCESS.map((_, i) => () => { if (this.state.step !== i) this.setState({ step: i }); });
+  svcEnter = SERVICES.map((_, i) => () => this.setState({ svc: i }));
+  svcLeave = () => this.setState({ svc: -1 });
+  projEnter = PROJECTS.map((_, i) => () => this.setState({ proj: i }));
+  projLeave = () => this.setState({ proj: -1 });
+
+  componentDidMount() {
+    this.onResize = () => {
+      this.setState({ w: window.innerWidth, menuOpen: window.innerWidth >= 1024 ? false : this.state.menuOpen });
+      this.sizeCanvas && this.sizeCanvas();
+    };
+    window.addEventListener('resize', this.onResize);
+    this.onScroll = () => {
+      document.querySelectorAll('[data-reveal][data-pending]').forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 40) this.reveal(el);
+      });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.setupReveal();
+    this.startMotion();
+  }
+  componentDidUpdate() { this.setupReveal(); }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('mousemove', this.onMouse);
+    cancelAnimationFrame(this.raf);
+    this.io && this.io.disconnect();
+  }
+
+  startMotion() {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canvas = this.heroCanvasRef.current;
+    const ctx = canvas && canvas.getContext('2d');
+    let W = 0, H = 0, parts = [];
+    this.sizeCanvas = () => {
+      if (!canvas) return;
+      const r = canvas.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+      W = r.width; H = r.height;
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const mobile = W < 1000, n = mobile ? 16 : 34;
+      parts = Array.from({ length: n }, () => {
+        const z = 0.3 + Math.random() * 0.7;
+        return { x: (mobile ? 0.1 : 0.5) + Math.random() * (mobile ? 0.9 : 0.5), y: Math.random(), z, r: 0.5 + z * 1.2, v: 0.00008 + z * 0.00018, ph: Math.random() * 6.28 };
+      });
+    };
+    this.sizeCanvas();
+    const target = { x: 0, y: 0 }, cur = { x: 0, y: 0 };
+    const draw = (t) => {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, W, H);
+      for (const p of parts) {
+        if (!reduced) { p.y -= p.v; if (p.y < -0.02) { p.y = 1.02; } }
+        const x = p.x * W + cur.x * p.z * 2.4, y = p.y * H + cur.y * p.z * 1.6;
+        const a = (0.18 + 0.5 * p.z) * (0.55 + 0.45 * Math.sin(t * 0.9 + p.ph));
+        ctx.fillStyle = `rgba(85,251,2,${(a * 0.12).toFixed(3)})`;
+        ctx.beginPath(); ctx.arc(x, y, p.r * 4, 0, 6.283); ctx.fill();
+        ctx.fillStyle = `rgba(160,255,110,${a.toFixed(3)})`;
+        ctx.beginPath(); ctx.arc(x, y, p.r, 0, 6.283); ctx.fill();
+      }
+    };
+    if (reduced) { draw(0); return; }
+    this.onMouse = (e) => {
+      target.x = (e.clientX / window.innerWidth - 0.5) * 18;
+      target.y = (e.clientY / window.innerHeight - 0.5) * 11;
+    };
+    window.addEventListener('mousemove', this.onMouse, { passive: true });
+    const t0 = performance.now();
+    const tick = (now) => {
+      const t = (now - t0) / 1000, sy = window.scrollY;
+      if (sy < H + 100) {
+        cur.x += (target.x - cur.x) * 0.045;
+        cur.y += (target.y - cur.y) * 0.045;
+        const bg = this.heroBgRef.current, glow = this.heroGlowRef.current, dot = this.scrollDotRef.current;
+        if (bg) {
+          const zoom = 1.02 + 0.015 * (1 - Math.cos(t / 14)) / 2;
+          bg.style.transform = `scaleX(-1) scale(${zoom.toFixed(4)}) translate3d(${cur.x.toFixed(2)}px, ${(cur.y + sy * 0.12 + Math.sin(t / 9) * 3).toFixed(2)}px, 0)`;
+        }
+        if (glow) { glow.style.opacity = (0.6 + 0.3 * (1 + Math.sin(t / 3.2)) / 2).toFixed(3); glow.style.transform = `translate3d(${(-cur.x * 0.8).toFixed(2)}px, ${(-cur.y * 0.6 + sy * 0.08).toFixed(2)}px, 0)`; }
+        if (dot) dot.style.transform = `translateY(${(((t * 0.55) % 1) * 58 - 14).toFixed(1)}px)`;
+        draw(t);
+      }
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+
+  reveal(el) {
+    el.removeAttribute('data-pending');
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+    if (el.getAttribute('data-reveal') === 'clip') el.style.clipPath = 'inset(0% 0% 0% 0% round 14px)';
+    this.io && this.io.unobserve(el);
+  }
+  setupReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!this.io) {
+      this.io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => { if (e.isIntersecting || e.boundingClientRect.top < window.innerHeight) this.reveal(e.target); });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }
+    document.querySelectorAll('[data-reveal]:not([data-revealed])').forEach((el) => {
+      el.setAttribute('data-revealed', '');
+      if (el.getBoundingClientRect().top < window.innerHeight) return;
+      const clip = el.getAttribute('data-reveal') === 'clip';
+      const d = (parseInt(el.getAttribute('data-delay') || '0', 10) || 0) + 'ms';
+      el.setAttribute('data-pending', '');
+      el.style.opacity = '0';
+      el.style.transform = clip ? 'translateY(40px)' : 'translateY(20px)';
+      if (clip) el.style.clipPath = 'inset(10% 0% 0% 0% round 14px)';
+      const tr = `opacity .7s ${EASE} ${d}, transform .8s ${EASE} ${d}` + (clip ? `, clip-path 1.1s ${EASE} ${d}` : '');
+      el.style.transition = (el.style.transition ? el.style.transition + ', ' : '') + tr;
+      this.io.observe(el);
+    });
+  }
+
+  servicesVals() {
+    const row = this.state.w >= 900;
+    return SERVICES.map((s, i) => {
+      const on = this.state.svc === i;
+      return {
+        ...s, num: pad(i + 1), delay: i * 80, enter: this.svcEnter[i], leave: this.svcLeave,
+        href: wa(`Olá, Atlas Digital! Tenho interesse em: ${s.title}.`),
+        aria: `${s.title}: solicitar orçamento pelo WhatsApp`,
+        parts: iconParts(s.icon, on),
+        lineStyle: { position: 'absolute', left: 0, right: 0, top: 0, height: 1, background: '#55FB02', transformOrigin: 'left center', transform: on ? 'none' : 'scaleX(0)', transition: `transform .7s ${EASE}` },
+        rowStyle: row
+          ? { display: 'grid', gridTemplateColumns: '64px minmax(0,1.1fr) minmax(0,1fr) 56px', gridTemplateAreas: '"num title desc icon"', alignItems: 'center', gap: 32, padding: 'clamp(32px,3.2vw,44px) 0', color: '#F2F4F3' }
+          : { display: 'grid', gridTemplateColumns: 'minmax(0,1fr) auto', gridTemplateAreas: '"num icon" "title title" "desc desc"', alignItems: 'center', gap: '16px 20px', padding: '28px 0 32px', color: '#F2F4F3' },
+        numStyle: { gridArea: 'num', fontFamily: "'Anton',sans-serif", fontSize: 22, lineHeight: 1, color: on ? '#55FB02' : '#7A827F', transition: 'color .3s' },
+        titleStyle: { gridArea: 'title', margin: 0, fontFamily: "'Anton',sans-serif", fontWeight: 400, textTransform: 'uppercase', lineHeight: 1, fontSize: 'clamp(28px,3vw,44px)', color: '#F2F4F3', transform: on ? 'translateX(10px)' : 'none', transition: `transform .5s ${EASE}` },
+      };
+    });
+  }
+
+  projectsVals() {
+    const narrow = this.state.w < 700;
+    return PROJECTS.map((p, i) => {
+      const on = this.state.proj === i;
+      let domain = '';
+      try { domain = p.link ? new URL(p.link).host : ''; } catch (e) {}
+      return {
+        ...p, num: pad(i + 1), enter: this.projEnter[i], leave: this.projLeave,
+        href: p.link || '#portfolio', domain,
+        aria: `Ver projeto ${p.title} (abre em nova aba)`,
+        imageSlot: `projeto-${slug(p.title)}`,
+        placeholder: `Imagem do projeto — ${p.title}`,
+        hasImage: !!p.image, noImage: !p.image,
+        alt: `Página inicial do site ${p.title}`,
+        hasLink: !!p.link, noLink: !p.link,
+        frameStyle: { position: 'relative', display: 'block', aspectRatio: narrow ? '4 / 3' : '1344 / 545', overflow: 'hidden', background: '#0E1211' },
+        imgStyle: { position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left top', display: 'block', transform: on ? 'scale(1.025)' : 'none', transition: `transform 1.2s ${EASE}` },
+        openStyle: { justifySelf: 'end', fontSize: 11, fontWeight: 600, letterSpacing: '0.16em', textTransform: 'uppercase', whiteSpace: 'nowrap', color: on ? '#55FB02' : '#C9CECC', transition: 'color .3s' },
+        veilStyle: { position: 'absolute', inset: 0, background: 'rgba(7,9,10,0.42)', opacity: on ? 1 : 0, transition: `opacity .45s ${EASE}`, pointerEvents: 'none' },
+        ctaStyle: {
+          position: 'absolute', left: '50%', top: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          width: 148, height: 148, borderRadius: '50%', background: '#55FB02', color: '#07090A',
+          fontSize: 13, fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', textAlign: 'center',
+          transform: `translate(-50%,-50%) scale(${on ? 1 : 0.6})`, opacity: on ? 1 : 0,
+          transition: `transform .5s ${EASE}, opacity .35s ${EASE}`, pointerEvents: 'none',
+        },
+      };
+    });
+  }
+
+  processVals() {
+    const row = this.state.w >= 1100, gap = row ? 32 : 36;
+    const last = PROCESS.length - 1;
+    return {
+      procCols: row ? 'repeat(4,minmax(0,1fr))' : 'minmax(0,1fr)',
+      procGap: gap + 'px',
+      process: PROCESS.map((p, i) => {
+        const on = this.state.step === i;
+        return {
+          ...p, num: pad(i + 1), delay: row ? i * 90 : 0, enter: this.stepEnter[i],
+          liStyle: row
+            ? { display: 'flex', flexDirection: 'column', cursor: 'default' }
+            : { display: 'grid', gridTemplateColumns: '14px minmax(0,1fr)', gap: 24, cursor: 'default' },
+          railStyle: row
+            ? { position: 'relative', height: 13, marginBottom: 'clamp(28px,3vw,44px)' }
+            : { position: 'relative', alignSelf: 'stretch' },
+          lineStyle: {
+            position: 'absolute', overflow: 'hidden', background: 'rgba(255,255,255,0.14)',
+            ...(row
+              ? { left: 13, top: 6, height: 1, right: i === last ? 0 : -gap }
+              : { left: 6, top: 13, width: 1, bottom: -gap, display: i === last ? 'none' : 'block' }),
+          },
+          fillStyle: {
+            position: 'absolute', inset: 0, background: '#55FB02',
+            transformOrigin: row ? 'left center' : 'center top',
+            transform: on ? 'none' : (row ? 'scaleX(0)' : 'scaleY(0)'),
+            transition: 'transform .6s ' + EASE,
+          },
+          nodeStyle: {
+            position: 'absolute', left: 0, top: 0, width: 13, height: 13, borderRadius: '50%',
+            border: '1px solid ' + (on ? '#55FB02' : 'rgba(255,255,255,0.3)'),
+            background: on ? '#55FB02' : '#07090A', transition: 'background .3s, border-color .3s',
+          },
+          bodyStyle: {
+            opacity: on ? 1 : 0.78, transform: on ? 'none' : 'translateY(4px)',
+            transition: 'opacity .4s ' + EASE + ', transform .4s ' + EASE, paddingBottom: row ? 0 : 4,
+          },
+          numStyle: {
+            display: 'block', fontFamily: "'Anton',sans-serif", fontWeight: 400, lineHeight: 0.9,
+            fontSize: row ? 'clamp(72px,7.4vw,116px)' : 64, marginBottom: row ? 28 : 18,
+            color: on ? '#55FB02' : 'transparent',
+            WebkitTextStroke: '1px ' + (on ? '#55FB02' : 'rgba(242,244,243,0.4)'),
+            transition: 'color .4s, -webkit-text-stroke-color .4s',
+          },
+        };
+      }),
+    };
+  }
+
+  benefitsVals() {
+    const row = this.state.w >= 900;
+    return {
+      benefitCols: row ? 'repeat(3,minmax(0,1fr))' : 'minmax(0,1fr)',
+      benefits: BENEFITS.map((b, i) => ({
+        ...b, num: pad(i + 1), delay: row ? i * 90 : 0,
+        style: row
+          ? { padding: '36px 32px 8px', paddingLeft: i === 0 ? 0 : 32, borderLeft: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.12)' }
+          : { padding: '28px 0', borderTop: i === 0 ? 'none' : '1px solid rgba(255,255,255,0.12)' },
+      })),
+    };
+  }
+
+  renderVals() {
+    const isDesktop = this.state.w >= 1024;
+    const open = this.state.menuOpen && !isDesktop;
+    const whatsappUrl = wa(WHATSAPP_MESSAGE);
+    const bar = { display: 'block', width: 18, height: 1.5, background: '#F2F4F3', transition: 'transform .25s' };
+    const small = this.state.w < 1000;
+    return {
+      company: COMPANY,
+      year: new Date().getFullYear(),
+      whatsappUrl,
+      isDesktop,
+      isMobile: !isDesktop,
+      menuOpen: open,
+      menuLabel: open ? 'Fechar menu' : 'Abrir menu',
+      showMobileMenu: open,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      bar1: { ...bar, transform: open ? 'translateY(3.25px) rotate(45deg)' : 'none' },
+      bar2: { ...bar, transform: open ? 'translateY(-3.25px) rotate(-45deg)' : 'none' },
+      heroBgRef: this.heroBgRef,
+      heroGlowRef: this.heroGlowRef,
+      heroCanvasRef: this.heroCanvasRef,
+      scrollDotRef: this.scrollDotRef,
+      heroMinH: small ? 'auto' : 'min(calc(100vh - 68px), 920px)',
+      heroGlow: small
+        ? 'radial-gradient(ellipse 50% 24% at 72% 86%,rgba(85,251,2,0.12),rgba(85,251,2,0) 70%)'
+        : 'radial-gradient(ellipse 24% 32% at 76% 72%,rgba(85,251,2,0.12),rgba(85,251,2,0) 70%)',
+      heroBgPos: small ? '24% 100%' : 'center center',
+      heroOverlay: small
+        ? 'linear-gradient(180deg,rgba(7,9,10,0.9) 0%,rgba(7,9,10,0.82) 45%,rgba(7,9,10,0.45) 72%,rgba(7,9,10,0.15) 100%)'
+        : 'linear-gradient(90deg,rgba(7,9,10,0.92) 0%,rgba(7,9,10,0.78) 30%,rgba(7,9,10,0.35) 50%,rgba(7,9,10,0) 66%)',
+      nav: NAV,
+      services: this.servicesVals(),
+      projects: this.projectsVals(),
+      ...this.processVals(),
+      ...this.benefitsVals(),
+      values: VALUES,
+      contacts: [
+        { label: 'WhatsApp', value: WHATSAPP_DISPLAY, href: whatsappUrl },
+        { label: 'Instagram', value: INSTAGRAM_HANDLE, href: INSTAGRAM_URL },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
